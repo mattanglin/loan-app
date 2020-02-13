@@ -4,7 +4,7 @@ import style from './Page.style';
 
 export interface PageProps {
   className?: string;
-  children?: React.ReactChild;
+  children?: React.ReactNode;
 }
 
 const Page: React.FC<PageProps> = ({ className, children }) => <div css={style} className={cx('page', className)}>{children}</div>;

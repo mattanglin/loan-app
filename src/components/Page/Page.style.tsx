@@ -1,6 +1,6 @@
 const style = {
   flex: 1,
-  maxWidth: 960,
+  maxWidth: 640,
   paddingLeft: 24,
   paddingRight: 24,
 };
