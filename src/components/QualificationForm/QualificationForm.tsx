@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import Input from '../Input/Input';
+import SubmitButton from '../SubmitButton/SubmitButton';
 import { FormValues } from './types';
 import validationSchema from './validationSchema';
 
@@ -29,7 +30,7 @@ const QualificationForm = () => {
           <Input name="autoModel" label="Auto Model" />
           <Input name="yearlyIncome" label="Estimated Yearly Income" type="number" />
           <Input name="creditScore" label="Estimated Credit Score" type="number" />
-          <button type="submit">Submit</button>
+          <SubmitButton>Submit</SubmitButton>
         </Form>
       )}
     </Formik>

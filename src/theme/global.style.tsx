@@ -11,6 +11,9 @@ const styles = {
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
   },
+  '*': {
+    boxSizing: 'border-box' as 'border-box',
+  },
   '.app': {
     display: 'flex',
     justifyContent: 'center',

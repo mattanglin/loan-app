@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <Page className="home">
       <h1>Landing</h1>
-      <p>Complete th following form to pre-qualify for an auto-loan!</p>
+      <p>Complete the following form to pre-qualify for an auto-loan!</p>
       <QualificationForm />
     </Page>
   )

@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
     <div css={style}>
       {label && <label htmlFor={name}>{label}</label>}
       <Field type={type} name={name} disabled={disabled} />
-      <ErrorMessage name={name} />
+      <div className="error"><ErrorMessage name={name} /></div>
     </div>
   )
 };
