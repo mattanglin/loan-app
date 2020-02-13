@@ -5,7 +5,7 @@ import QualificationForm from '../../components/QualificationForm/QualificationF
 const HomePage = () => {
   return (
     <Page className="home">
-      <h1>Landing</h1>
+      <h1>Pre-Qualification Tool</h1>
       <p>Complete the following form to pre-qualify for an auto-loan!</p>
       <QualificationForm />
     </Page>
