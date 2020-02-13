@@ -2,7 +2,6 @@ import React from 'react';
 import Page from '../../components/Page/Page';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
-import { disqualificationPage } from '../../routes';
 
 const DisqualificationPage = () => {
   const disqualificationMessage = useSelector<RootState>(state => state.location.payload.disqualificationMessage) as string;

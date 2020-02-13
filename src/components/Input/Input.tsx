@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <div css={style}>
       {label && <label htmlFor={name}>{label}</label>}
-      <Field type={type} name={name} disabled={disabled} />
+      <Field type={type} name={name} disabled={disabled} autoComplete="off" />
       <div className="error"><ErrorMessage name={name} /></div>
     </div>
   )
