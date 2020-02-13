@@ -1,6 +1,6 @@
 # loan-app
 
-TODO Documentation
+Small loan pre-qualification app. [See docs](./docs)
 
 ## Installation
 
