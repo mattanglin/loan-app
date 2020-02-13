@@ -4,6 +4,8 @@ import { FormValues } from '../components/QualificationForm/types';
 // This would likely come from a config
 const baseUrl = 'http://api.cuna.com/v1';
 
+export const isQualified = (values: FormValues) => values.autoPurchasePrice <= (values.yearlyIncome as number / 5) && values.creditScore >= 600;
+
 // Mock The fetched Call
 fetchMock.mock(`${baseUrl}/verify-loan`, (url, options) => {
   const body = JSON.parse(options.body as string) as FormValues;
@@ -12,7 +14,7 @@ fetchMock.mock(`${baseUrl}/verify-loan`, (url, options) => {
   // Invalidate large purchase prices
   if (body.autoPurchasePrice > 1000000) {
     return { status: 400, body: JSON.stringify({ message: 'Bad Request'}) };
-  } else if (body.autoPurchasePrice > (body.yearlyIncome as number / 5) || body.creditScore < 600) {
+  } else if (!isQualified(body)) {
 
     // invalidate if purchase price > 1/5 income OR credit < 600
     return {
