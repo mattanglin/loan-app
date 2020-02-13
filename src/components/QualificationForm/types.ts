@@ -1,7 +1,7 @@
 export interface FormValues {
-  autoPurchasePrice?: number;
+  autoPurchasePrice: number | '';
   autoMake: string;
   autoModel: string;
-  yearlyIncome?: number;
-  creditScore?: number;
+  yearlyIncome: number | '';
+  creditScore: number | '';
 }

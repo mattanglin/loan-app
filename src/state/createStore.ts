@@ -10,7 +10,7 @@ import thunk from 'redux-thunk'
 import routes, { onBeforeChange } from '../routes';
 
 // Application Reducers
-// TODO Add app reducers
+import qualification from './qualification';
 
 // Setup RFR
 const {
@@ -23,6 +23,7 @@ const {
 })
 export const rootReducer = combineReducers({
   location,
+  qualification,
 })
 
 // Configured createStore

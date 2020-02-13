@@ -26,6 +26,7 @@ const style = {
   '& .error': {
     height: '1em',
     color: 'red',
+    fontSize: 10,
   }
 };
 

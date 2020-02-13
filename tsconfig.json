@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "types": ["@emotion/core"],
+    "types": [
+      "@emotion/core",
+      "jest"
+    ],
     "target": "es5",
     "lib": [
       "dom",

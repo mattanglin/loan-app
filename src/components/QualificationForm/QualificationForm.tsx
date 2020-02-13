@@ -1,36 +1,41 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import Input from '../Input/Input';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import { FormValues } from './types';
 import validationSchema from './validationSchema';
-
-
-const submitQualification = async (values: FormValues) => {
-  console.log('TODO: Submit', values);
-};
+import { thunks } from '../../state/qualification';
 
 const QualificationForm = () => {
+  const dispatch = useDispatch();
+  const submitQualification = useCallback(async (values: FormValues) => {
+    await dispatch(thunks.verifyLoanThunk(values));
+  }, [dispatch]);
+
   return (
     <Formik
       onSubmit={submitQualification}
       initialValues={{
-        autoPurchasePrice: 0,
+        autoPurchasePrice: '',
         autoMake: '',
         autoModel: '',
-        yearlyIncome: 0,
-        creditScore: 0,
+        yearlyIncome: '',
+        creditScore: '',
       }}
       validationSchema={validationSchema}
     >
       {formProps => (
         <Form>
+          {console.log(formProps)}
           <Input name="autoPurchasePrice" label="Auto Purchase Price" type="number" />
           <Input name="autoMake" label="Auto Make" />
           <Input name="autoModel" label="Auto Model" />
           <Input name="yearlyIncome" label="Estimated Yearly Income" type="number" />
           <Input name="creditScore" label="Estimated Credit Score" type="number" />
-          <SubmitButton>Submit</SubmitButton>
+          <SubmitButton disabled={formProps.isSubmitting}>
+            {formProps.isSubmitting ? '...' : 'Submit'}
+          </SubmitButton>
         </Form>
       )}
     </Formik>
