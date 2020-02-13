@@ -16,7 +16,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div className="App">
+      <div className="app">
         <RouteSwitch
           routes={{
             [HOME_PAGE]: HomePage,

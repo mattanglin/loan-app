@@ -1,10 +1,11 @@
 import React from 'react';
+import Page from '../../components/Page/Page';
 
 const DisqualificationPage = () => {
   return (
-    <div>
+    <Page className="disqualied">
       <h1>DisqualificationPage</h1>
-    </div>
+    </Page>
   );
 }
 

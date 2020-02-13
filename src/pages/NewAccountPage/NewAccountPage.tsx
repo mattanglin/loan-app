@@ -1,10 +1,11 @@
 import React from 'react';
+import Page from '../../components/Page/Page';
 
 const NewAccountPage = () => {
   return (
-    <div>
+    <Page className="new-account">
       <h1>NewAccountPage</h1>
-    </div>
+    </Page>
   );
 }
 
