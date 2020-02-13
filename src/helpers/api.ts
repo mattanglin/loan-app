@@ -19,7 +19,7 @@ fetchMock.mock(`${baseUrl}/verify-loan`, (url, options) => {
       status: 200,
       body: JSON.stringify({
         qualified: false,
-        message: 'Could not verify loan'
+        message: 'Unfortunately you are not currently qualified for a new auto loan'
       }),
     };
   }
