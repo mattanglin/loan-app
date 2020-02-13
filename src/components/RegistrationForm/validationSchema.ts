@@ -7,7 +7,7 @@ const schema = Yup.object().shape<FormValues>({
     .required('Required'),
   password: Yup.string()
     .min(8)
-    .matches(/[0-9!@#\$%\^\&*\)\(+=._-]/, 'Password must contain number or special character')
+    .matches(/[0-9!@#$%^&*)(+=._-]/, 'Password must contain number or special character')
     .required('Required'),
   confirmPassword: Yup.string().required('Required'),
 })
