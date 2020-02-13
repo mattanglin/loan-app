@@ -2,7 +2,10 @@ import { createStandardAction, getType, ActionType } from 'typesafe-actions';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from 'state';
 import { AnyAction, Dispatch } from 'redux';
+import { redirect } from 'redux-first-router';
+import { disqualificationPage, newAccountPage } from '../routes';
 import { FormValues } from '../components/QualificationForm/types';
+import * as api from '../helpers/api';
 
 // Action Types
 export const QUALIFY_REQUEST = '@qualification/QUALIFY_REQUEST';
@@ -24,11 +27,14 @@ export const verifyLoanThunk = (values: FormValues): ThunkAction<Promise<{}>, Ro
 
   try {
     // TODO await api call
-    console.log('API REQUEST:', values);
-    await (() => new Promise(resolve => {
-      setTimeout(() => resolve(), 1200);
-    }))();
-    dispatch(actions.qualifySuccess());
+    const result = await api.verifyLoanQualification(values);
+
+    if (result.qualified) {
+      dispatch(actions.qualifySuccess());
+      dispatch(redirect(newAccountPage('Ideally a sucess confirmation id')));
+    } else {
+      dispatch(redirect(disqualificationPage(result.message)));
+    }
   } catch (err) {
     const errorMessage = err.message || 'Could not complete loan qualification, please try again.';
     dispatch(actions.qualifyFailure(errorMessage));

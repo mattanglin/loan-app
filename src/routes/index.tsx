@@ -24,12 +24,12 @@ const routes: RoutesMap = {
 // Route Actions
 export const homePage = createAction(HOME_PAGE);
 export const newAccountPage = createAction(NEW_ACCOUNT_PAGE, actionCallback => (accountSuccess: string) => actionCallback({ accountSuccess }));
-export const disqulificationPage = createAction(DISQUALIFICATION_PAGE, actionCallback => (disqualificationMessage: string) => actionCallback({ disqualificationMessage }));
+export const disqualificationPage = createAction(DISQUALIFICATION_PAGE, actionCallback => (disqualificationMessage: string) => actionCallback({ disqualificationMessage }));
 
 export const actions = {
   homePage,
   newAccountPage,
-  disqulificationPage,
+  disqualificationPage,
 }
 
 export const onBeforeChange = (dispatch: Dispatch, getState: StateGetter, bag: Bag): void => {

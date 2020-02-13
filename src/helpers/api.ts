@@ -1,14 +1,38 @@
+import fetchMock from 'fetch-mock';
 import { FormValues } from '../components/QualificationForm/types';
 
 // This would likely come from a config
 const baseUrl = 'http://api.cuna.com/v1';
 
-// const fetchMock = ();
+// Mock The fetched Call
+fetchMock.mock(`${baseUrl}/verify-loan`, (url, options) => {
+  const body = JSON.parse(options.body as string) as FormValues;
 
-export const verifyLoanQualification = async (values: FormValues) => {
-  // const result = await (await fetch(`${baseUrl}/verify-loan`, { method: 'PUT', body: JSON.stringify(values) })).json();
-  const result = await (await fetch('https://swapi.co/api/people/1')).json();
+  // Verify loan
+  // Invalidate large purchase prices
+  if (body.autoPurchasePrice > 1000000) {
+    return { status: 400, body: JSON.stringify({ message: 'Bad Request'}) };
+  } else if (body.autoPurchasePrice > (body.yearlyIncome as number / 5) || body.creditScore < 600) {
 
-  console.log('result!', result);
-  return result.json();
+    // invalidate if purchase price > 1/5 income OR credit < 600
+    return {
+      status: 200,
+      body: JSON.stringify({
+        qualified: false,
+        message: 'Could not verify loan'
+      }),
+    };
+  }
+
+  return { status: 200, body: JSON.stringify({ qualified: true }) };
+});
+
+export const verifyLoanQualification = async (values: FormValues): Promise<{ message: string; qualified?: boolean }> => {
+  const response = await (await fetch(`${baseUrl}/verify-loan`, { method: 'PUT', body: JSON.stringify(values) }));
+
+  if (response.status > 299) {
+    throw response.json();
+  }
+
+  return response.json();
 };
